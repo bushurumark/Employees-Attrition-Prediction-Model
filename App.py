@@ -20,47 +20,47 @@ model = joblib.load("model.pkl")
 
 
 # Define function to preprocess input data
-def preprocess_input(Age, BusinessTravel,DailyRate,Department,DistanceFromHome,
-                     Education,EducationField,EnvironmentSatisfaction,Gender,
-                     HourlyRate,JobInvolvement,JobLevel,JobRole,JobSatisfaction,
-                     MaritalStatus,MonthlyIncome,MonthlyRate,NumCompaniesWorked,
-                     OverTime,PercentSalaryHike,PerformanceRating,RelationshipSatisfaction,
-                     StockOptionLevel,TotalWorkingYears,TrainingTimesLastYear,WorkLifeBalance,
-                     YearsAtCompany,YearsInCurrentRole,YearsSinceLastPromotion,YearsWithCurrManager):
+def preprocess_input(Age, BusinessTravel, DailyRate, Department, DistanceFromHome,
+                     Education, EducationField, EnvironmentSatisfaction, Gender,
+                     HourlyRate, JobInvolvement, JobLevel, JobRole, JobSatisfaction,
+                     MaritalStatus, MonthlyIncome, MonthlyRate, NumCompaniesWorked,
+                     OverTime, PercentSalaryHike, PerformanceRating, RelationshipSatisfaction,
+                     StockOptionLevel, TotalWorkingYears, TrainingTimesLastYear, WorkLifeBalance,
+                     YearsAtCompany, YearsInCurrentRole, YearsSinceLastPromotion, YearsWithCurrentManager):
     # Create a DataFrame with the input data
     input_data = pd.DataFrame({
         'Age': [Age],
-        'Business_Travel': [BusinessTravel],
-        'Daily_Rate': [DailyRate],  
+        'BusinessTravel': [BusinessTravel],
+        'DailyRate': [DailyRate],
         'Department': [Department],
-        'Distance_From_Home': [DistanceFromHome],
+        'DistanceFromHome': [DistanceFromHome],
         'Education': [Education],
-        'Education_Field': [EducationField],
-        'Environment_Satisfaction': [EnvironmentSatisfaction],
+        'EducationField': [EducationField],
+        'EnvironmentSatisfaction': [EnvironmentSatisfaction],
         'Gender': [Gender],
-        'Hourly_Rate': [HourlyRate],
-        'Job_Involvement': [JobInvolvement],
-        'Job_Level': [JobLevel],
-        'Job_Role': [JobRole],
-        'Job_Satisfaction': [JobSatisfaction],
-        'Marital_Status': [MaritalStatus],
-        'Monthly_Income': [MonthlyIncome],
-        'Monthly_Rate': [MonthlyRate],
-        'Numbers_of_Companies_Worked': [NumCompaniesWorked],
-        'Over_Time': [OverTime],
-        'Percentage_Salary_Hike': [PercentSalaryHike],
-        'Performance_Rating': [PerformanceRating],
-        'Relationship_Satisfaction': [RelationshipSatisfaction],
-        'Stock_Option_Level': [StockOptionLevel],
-        'Total_Working_Years': [TotalWorkingYears],
-        'Training_Times_Last_Year': [TrainingTimesLastYear],
-        'Work_Life_Balance': [WorkLifeBalance],
-        'Years_At_Company': [YearsAtCompany],
-        'Years_In_Current_Role': [YearsInCurrentRole],
-        'Years_Since_Last_Promotion': [YearsSinceLastPromotion],
-        'Years_With_Current_Manager': [YearsWithCurrManager]
+        'HourlyRate': [HourlyRate],
+        'JobInvolvement': [JobInvolvement],
+        'JobLevel': [JobLevel],
+        'JobRole': [JobRole],
+        'JobSatisfaction': [JobSatisfaction],
+        'MaritalStatus': [MaritalStatus],
+        'MonthlyIncome': [MonthlyIncome],
+        'MonthlyRate': [MonthlyRate],
+        'NumCompaniesWorked': [NumCompaniesWorked],
+        'OverTime': [OverTime],
+        'PercentSalaryHike': [PercentSalaryHike],
+        'PerformanceRating': [PerformanceRating],
+        'RelationshipSatisfaction': [RelationshipSatisfaction],
+        'StockOptionLevel': [StockOptionLevel],
+        'TotalWorkingYears': [TotalWorkingYears],
+        'TrainingTimesLastYear': [TrainingTimesLastYear],
+        'WorkLifeBalance': [WorkLifeBalance],
+        'YearsAtCompany': [YearsAtCompany],
+        'YearsInCurrentRole': [YearsInCurrentRole],
+        'YearsSinceLastPromotion': [YearsSinceLastPromotion],
+        'YearsWithCurrentManager': [YearsWithCurrentManager]
     })
-    
+
     # Encoding of all categorical variables 
     input_data_encoded = pd.get_dummies(input_data)
     
@@ -103,46 +103,46 @@ def main():
     st.markdown('<div class="title">Employees Attrition Prediction Model</div>', unsafe_allow_html=True)
     
     Age = st.number_input('Age', min_value=18, max_value=60)
-    Business_Travel = st.selectbox('BusinessTravel',  ['Travel_Rarely','Travel_Frequently','Non-Travel'])
-    Daily_Rate = st.number_input('DailyRate', min_value=102, max_value=1500)
-    Department = st.selectbox('Department', ['Research & Development','Sales','Human Resources'])
-    Distance_From_Home = st.number_input('DistanceFromHome', min_value=1, max_value=29)
-    Education = st.selectbox('Education', [1,2,3,4,5])
-    EducationField = st.selectbox('EducationField', ['Life Sciences','Medical','Marketing','Technical Degree','Other','Human Resources'])
-    Environment_Satisfaction = st.selectbox('EnvironmentSatisfaction', [1,2,3,4])
+    BusinessTravel = st.selectbox('BusinessTravel',  ['Travel_Rarely', 'Travel_Frequently', 'Non-Travel'])
+    DailyRate = st.number_input('DailyRate', min_value=102, max_value=1500)
+    Department = st.selectbox('Department', ['Research & Development', 'Sales', 'Human Resources'])
+    DistanceFromHome = st.number_input('DistanceFromHome', min_value=1, max_value=29)
+    Education = st.selectbox('Education', [1, 2, 3, 4, 5])
+    EducationField = st.selectbox('EducationField', ['Life Sciences', 'Medical', 'Marketing', 'Technical Degree', 'Other', 'Human Resources'])
+    EnvironmentSatisfaction = st.selectbox('EnvironmentSatisfaction', [1, 2, 3, 4])
     Gender = st.selectbox('Gender', ['Male', 'Female'])
     HourlyRate = st.number_input('HourlyRate', min_value=30, max_value=100)
-    Job_Involvement = st.selectbox('JobInvolvement', [1,2,3,4])
-    Job_Level = st.selectbox('JobLevel', [1,2,3,4,5])
-    Job_Role = st.selectbox('JobRole', ['Sales Executive','Research Scientist','Laboratory Technician','Manufacturing Director',
-                                        'Healthcare Representative','Manager','Sales Representative','Research Director',
+    JobInvolvement = st.selectbox('JobInvolvement', [1, 2, 3, 4])
+    JobLevel = st.selectbox('JobLevel', [1, 2, 3, 4, 5])
+    JobRole = st.selectbox('JobRole', ['Sales Executive', 'Research Scientist', 'Laboratory Technician', 'Manufacturing Director',
+                                        'Healthcare Representative', 'Manager', 'Sales Representative', 'Research Director',
                                         'Human Resources'])
-    Job_Satisfaction = st.selectbox('JobSatisfaction', [1,2,3,4])
-    Marital_Status = st.selectbox('MaritalStatus', ['Married','Single','Divorced'])
-    Monthly_Income = st.number_input('MonthlyIncome', min_value=1000, max_value=20000)
-    Monthly_Rate = st.number_input('MonthlyRate', min_value=2000, max_value=27000)
-    Number_of_Companies_Worked = st.number_input('NumCompaniesWorked', min_value=0, max_value=10)
-    Over_Time = st.selectbox('OverTime', ['Yes','No'])
-    Percentage_Salary_Hike = st.number_input('PercentSalaryHike', min_value=11, max_value=25)
-    Performance_Rating = st.selectbox('PerformanceRating', [1,2,3,4])
-    Relationship_Satisfaction = st.selectbox('RelationshipSatisfaction', [1,2,3,4])
-    Stock_Option_Level = st.selectbox('StockOptionLevel',[0,1,2,3])
-    Total_Working_Years = st.number_input('TotalWorkingYears', min_value=0, max_value=40)
-    Training_Times_Last_Year = st.number_input('TrainingTimesLastYear', min_value=0, max_value=6)
-    Work_Life_Balance = st.selectbox('WorkLifeBalance', [1,2,3,4])
-    Years_At_Company = st.number_input('YearsAtCompany', min_value=0, max_value=40)
-    Years_In_Current_Role = st.number_input('YearsInCurrentRole', min_value=0, max_value=18)
-    Years_Since_Last_Promotion = st.number_input('YearsSinceLastPromotion', min_value=0, max_value=15)
-    Years_With_Current_Manager = st.number_input('YearsWithCurrManager', min_value=0, max_value=17)
+    JobSatisfaction = st.selectbox('JobSatisfaction', [1, 2, 3, 4])
+    MaritalStatus = st.selectbox('MaritalStatus', ['Married', 'Single', 'Divorced'])
+    MonthlyIncome = st.number_input('MonthlyIncome', min_value=1000, max_value=20000)
+    MonthlyRate = st.number_input('MonthlyRate', min_value=2000, max_value=27000)
+    NumCompaniesWorked = st.number_input('NumCompaniesWorked', min_value=0, max_value=10)
+    OverTime = st.selectbox('OverTime', ['Yes', 'No'])
+    PercentSalaryHike = st.number_input('PercentSalaryHike', min_value=11, max_value=25)
+    PerformanceRating = st.selectbox('PerformanceRating', [1, 2, 3, 4])
+    RelationshipSatisfaction = st.selectbox('RelationshipSatisfaction', [1, 2, 3, 4])
+    StockOptionLevel = st.selectbox('StockOptionLevel', [0, 1, 2, 3])
+    TotalWorkingYears = st.number_input('TotalWorkingYears', min_value=0, max_value=40)
+    TrainingTimesLastYear = st.number_input('TrainingTimesLastYear', min_value=0, max_value=6)
+    WorkLifeBalance = st.selectbox('WorkLifeBalance', [1, 2, 3, 4])
+    YearsAtCompany = st.number_input('YearsAtCompany', min_value=0, max_value=40)
+    YearsInCurrentRole = st.number_input('YearsInCurrentRole', min_value=0, max_value=18)
+    YearsSinceLastPromotion = st.number_input('YearsSinceLastPromotion', min_value=0, max_value=15)
+    YearsWithCurrentManager = st.number_input('YearsWithCurrManager', min_value=0, max_value=17)
 
     if st.button('Predict'):
-        input_data = preprocess_input(Age, BusinessTravel,DailyRate,Department,DistanceFromHome,
-                                      Education,EducationField,EnvironmentSatisfaction,Gender,
-                                      HourlyRate,JobInvolvement,JobLevel,JobRole,JobSatisfaction,
-                                      MaritalStatus,MonthlyIncome,MonthlyRate,NumCompaniesWorked,
-                                      OverTime,PercentSalaryHike,PerformanceRating,RelationshipSatisfaction,
-                                      StockOptionLevel,TotalWorkingYears,TrainingTimesLastYear,WorkLifeBalance,
-                                      YearsAtCompany,YearsInCurrentRole,YearsSinceLastPromotion,YearsWithCurrManager)
+        input_data = preprocess_input(Age, BusinessTravel, DailyRate, Department, DistanceFromHome,
+                                      Education, EducationField, EnvironmentSatisfaction, Gender,
+                                      HourlyRate, JobInvolvement, JobLevel, JobRole, JobSatisfaction,
+                                      MaritalStatus, MonthlyIncome, MonthlyRate, NumCompaniesWorked,
+                                      OverTime, PercentSalaryHike, PerformanceRating, RelationshipSatisfaction,
+                                      StockOptionLevel, TotalWorkingYears, TrainingTimesLastYear, WorkLifeBalance,
+                                      YearsAtCompany, YearsInCurrentRole, YearsSinceLastPromotion, YearsWithCurrentManager)
         try:
             prediction = model.predict(input_data)[0]
             if prediction == 0:
