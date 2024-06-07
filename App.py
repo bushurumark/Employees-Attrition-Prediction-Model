@@ -103,63 +103,64 @@ def main():
     st.markdown('<div class="title">Employees Attrition Prediction Model</div>', unsafe_allow_html=True)
     
     Age = st.number_input('Age', min_value=18, max_value=60)
-    BusinessTravel = st.selectbox('BusinessTravel',  ['Travel_Rarely', 'Travel_Frequently', 'Non-Travel'])
-    DailyRate = st.number_input('DailyRate', min_value=102, max_value=1500)
+    BusinessTravel = st.selectbox('Business Travel',  ['Travel_Rarely', 'Travel_Frequently', 'Non-Travel'])
+    DailyRate = st.number_input('Daily Rate', min_value=102, max_value=1500)
     Department = st.selectbox('Department', ['Research & Development', 'Sales', 'Human Resources'])
-    DistanceFromHome = st.number_input('DistanceFromHome', min_value=1, max_value=29)
-    education_levels = {
-    1: "Below College",
-    2: "College",
-    3: "Bachelor",
-    4: "Master",
-    5: "Doctor"
-}
-    education = st.selectbox('Education', list(education_levels.values()), index=0)
-    education_code = list(education_levels.keys())[list(education_levels.values()).index(education)]
-    st.write(f"Selected Education Level: {education} (Code: {education_code})")
-    EducationField = st.selectbox('EducationField', ['Life Sciences', 'Medical', 'Marketing', 'Technical Degree', 'Other', 'Human Resources'])
-    satisfaction_labels = {1: 'Low', 2: 'Medium', 3: 'High', 4: 'Very High'}
-    EnvironmentSatisfaction = st.selectbox('EnvironmentSatisfaction', list(satisfaction_labels.keys()), format_func=lambda x: satisfaction_labels[x])
-    st.write('Selected Environment Satisfaction:', EnvironmentSatisfaction)
+    DistanceFromHome = st.number_input('Distance From Home', min_value=1, max_value=29)
+    
+    Education_levels = {1: 'Below College', 2: 'College', 3: 'Bachelor', 4: 'Master', 5: 'Doctor'}
+    options = [f"{key}-{value}" for key, value in Education_levels.items()]
+    Education = st.selectbox('Education', options)
+    
+    EducationField = st.selectbox('Education Field', ['Life Sciences', 'Medical', 'Marketing', 'Technical Degree', 'Other', 'Human Resources'])
+    
+    Envsat_levels = {1: 'Low', 2: 'Medium', 3: 'High', 4: 'Very High'}
+    options = [f"{key}-{value}" for key, value in Envsat_levels.items()]
+    EnvironmentSatisfaction = st.selectbox('Environment Satisfaction', options)
+    
     Gender = st.selectbox('Gender', ['Male', 'Female'])
-    HourlyRate = st.number_input('HourlyRate', min_value=30, max_value=100)
-    JobInvolvement_labels = ['Low', 'Medium', 'High', 'Very High']
-    JobInvolvement = st.selectbox('Job Involvement', list(zip(JobInvolvement_labels, [1, 2, 3, 4])))
-    JobLevel = st.selectbox('JobLevel', [1, 2, 3, 4, 5])
-    JobRole = st.selectbox('JobRole', ['Sales Executive', 'Research Scientist', 'Laboratory Technician', 'Manufacturing Director',
+    HourlyRate = st.number_input('Hourl yRate', min_value=30, max_value=100)
+    
+    Involvement_levels = {1: 'Low', 2: 'Medium', 3: 'High', 4: 'Very High'}
+    options = [f"{key}-{value}" for key, value in Involvement_levels.items()]
+    JobInvolvement = st.selectbox('Job Involvement', options)
+    
+    JobLevel = st.selectbox('Job Level', [1, 2, 3, 4, 5])
+    JobRole = st.selectbox('Job Role', ['Sales Executive', 'Research Scientist', 'Laboratory Technician', 'Manufacturing Director',
                                         'Healthcare Representative', 'Manager', 'Sales Representative', 'Research Director',
                                         'Human Resources'])
-    labels = ['Low', 'Medium', 'High', 'Very High']
-    values = [1, 2, 3, 4]
-    JobSatisfaction = st.selectbox('Job Satisfaction', labels, index=values.index(3))
-    MaritalStatus = st.selectbox('MaritalStatus', ['Married', 'Single', 'Divorced'])
-    MonthlyIncome = st.number_input('MonthlyIncome', min_value=1000, max_value=20000)
-    MonthlyRate = st.number_input('MonthlyRate', min_value=2000, max_value=27000)
-    NumCompaniesWorked = st.number_input('NumCompaniesWorked', min_value=0, max_value=10)
+    
+    Jobsat_levels = {1: 'Low', 2: 'Medium', 3: 'High', 4: 'Very High'}
+    options = [f"{key}-{value}" for key, value in Jobsat_levels.items()]
+    JobSatisfaction = st.selectbox('Job Satisfaction', options)
+    
+    MaritalStatus = st.selectbox('Marital Status', ['Married', 'Single', 'Divorced'])
+    MonthlyIncome = st.number_input('Monthly Income', min_value=1000, max_value=20000)
+    MonthlyRate = st.number_input('Monthly Rate', min_value=2000, max_value=27000)
+    NumCompaniesWorked = st.number_input('Number of Companies Worked', min_value=0, max_value=10)
     OverTime = st.selectbox('OverTime', ['Yes', 'No'])
-    PercentSalaryHike = st.number_input('PercentSalaryHike', min_value=11, max_value=25)
-    rating_labels = {
-    1: "Low",
-    2: "Good",
-    3: "Excellent",
-    4: "Outstanding"
-}
-    PerformanceRating = st.selectbox('PerformanceRating', list(rating_labels.keys()), format_func=lambda x: rating_labels[x])
-    st.write("Selected Performance Rating:", PerformanceRating)
-    satisfaction_levels = {1: 'Low', 2: 'Medium', 3: 'High', 4: 'Very High'}
-    options = [f"{key}-{value}" for key, value in satisfaction_levels.items()]
+    PercentSalaryHike = st.number_input('Percentage Salary Hike', min_value=11, max_value=25)
+    
+    Rating_levels = {1: 'Low', 2: 'Good', 3: 'Excellent', 4: 'Outstanding'}
+    options = [f"{key}-{value}" for key, value in Rating_levels.items()]
+    PerformanceRating = st.selectbox('Performance Rating', options)
+    
+    Satisfaction_levels = {1: 'Low', 2: 'Medium', 3: 'High', 4: 'Very High'}
+    options = [f"{key}-{value}" for key, value in Satisfaction_levels.items()]
     RelationshipSatisfaction = st.selectbox('Relationship Satisfaction', options)
-    selected_number = int(RelationshipSatisfaction.split('-')[0])
-    StockOptionLevel = st.selectbox('StockOptionLevel', [0, 1, 2, 3])
-    TotalWorkingYears = st.number_input('TotalWorkingYears', min_value=0, max_value=40)
-    TrainingTimesLastYear = st.number_input('TrainingTimesLastYear', min_value=0, max_value=6)
-    options = {1: 'Low', 2: 'Good', 3: 'Excellent', 4: 'Outstanding'}
-    WorkLifeBalance = st.selectbox('WorkLifeBalance', options)
-    st.write(f'Selected value: {WorkLifeBalance} - {options[WorkLifeBalance]}')
-    YearsAtCompany = st.number_input('YearsAtCompany', min_value=0, max_value=40)
-    YearsInCurrentRole = st.number_input('YearsInCurrentRole', min_value=0, max_value=18)
-    YearsSinceLastPromotion = st.number_input('YearsSinceLastPromotion', min_value=0, max_value=15)
-    YearsWithCurrentManager = st.number_input('YearsWithCurrManager', min_value=0, max_value=17)
+    
+    StockOptionLevel = st.selectbox('Stock Option Level', [0, 1, 2, 3])
+    TotalWorkingYears = st.number_input('Total Working Years', min_value=0, max_value=40)
+    TrainingTimesLastYear = st.number_input('Training Times Last Year', min_value=0, max_value=6)
+    
+    Balance_levels = {1: 'Low', 2: 'Good', 3: 'Excellent', 4: 'Outstanding'}
+    options = [f"{key}-{value}" for key, value in Balance_levels.items()]
+    WorkLifeBalance = st.selectbox('Work Life Balance', options)
+    
+    YearsAtCompany = st.number_input('Years At Company', min_value=0, max_value=40)
+    YearsInCurrentRole = st.number_input('Years In Current Role', min_value=0, max_value=18)
+    YearsSinceLastPromotion = st.number_input('Years Since Last Promotion', min_value=0, max_value=15)
+    YearsWithCurrentManager = st.number_input('Years With Current Manager', min_value=0, max_value=17)
 
     if st.button('Predict'):
         input_data = preprocess_input(Age, BusinessTravel, DailyRate, Department, DistanceFromHome,
